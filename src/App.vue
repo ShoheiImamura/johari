@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app color="primary" dark dense>
       <div class="d-flex align-center"></div>
       印象と実態
       <v-spacer></v-spacer>

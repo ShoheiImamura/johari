@@ -1,136 +1,150 @@
 <template>
   <v-container>
-    <v-form>
-      <v-row class="text-center">
-        <v-col class="" cols="12">
-          <v-text-field
-            dense
-            label="引用元リンク"
-            outlined
-            v-model="linkToCitation"
-          >
-          </v-text-field>
-        </v-col>
-        <v-col class="" cols="12">
-          <v-textarea label="表現" outlined v-model="expression"> </v-textarea>
-        </v-col>
-
-        <v-col cols="12" xs="6" sm="6" md="6">
-          <v-text-field
-            dense
-            label="比較対象1"
-            outlined
-            v-model="itemLabel1"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="12" xs="6" sm="6" md="6">
-          <v-text-field
-            dense
-            label="比較対象2"
-            outlined
-            v-model="itemLabel2"
-          ></v-text-field>
-        </v-col>
-
-        <v-col cols="12" sm="12" md="12">
-          <div class="Subtitle 2 text-left">印象</div>
-          <!-- 印象スライダー -->
-          <v-slider
-            v-model="imaginaryValue1"
-            step="10"
-            thumb-label="always"
-            track-color="green"
-            ticks
-          >
-            <template v-slot:prepend>
-              <v-text-field
-                dense
-                :label="itemLabel1"
-                disabled
-                outlined
-                type="number"
-                v-model="imaginaryValue1"
-              ></v-text-field>
-            </template>
-            <template v-slot:append>
-              <v-text-field
-                dense
-                :label="itemLabel2"
-                disabled
-                outlined
-                type="number"
-                v-model="imaginaryValue2"
-              ></v-text-field>
-            </template>
-          </v-slider>
-        </v-col>
-
-        <v-col cols="12" sm="12" md="12">
-          <!-- 実態スライダー -->
-          <div class="Subtitle 2 text-left">実態値</div>
-
-          <v-slider
-            v-model="actualValue1"
-            thumb-label="always"
-            track-color="green"
-            readonly
-            :min="0"
-            :max="actualTotalValue"
-            ticks
-          >
-            <template v-slot:prepend>
-              <v-text-field
-                dense
-                :label="itemLabel1"
-                outlined
-                type="number"
-                v-model="actualValue1"
-              ></v-text-field>
-            </template>
-            <template v-slot:append>
-              <v-text-field
-                dense
-                :label="itemLabel2"
-                outlined
-                type="number"
-                v-model="actualValue2"
-              ></v-text-field>
-            </template>
-          </v-slider>
-        </v-col>
-      </v-row>
-    </v-form>
-
-    <v-divider></v-divider>
     <v-row class="text-center">
-      <v-card>
-        <v-card-text>
-          "{{ expression }}"
+      <v-col cols="12" xs="6" sm="6" md="6" lg="6">
+        <v-card>
+          <v-form>
+            <v-col class="" cols="12">
+              <v-text-field
+                dense
+                label="表現引用元リンク"
+                outlined
+                v-model="linkToCitation"
+              >
+              </v-text-field>
+              <v-textarea label="表現" outlined v-model="expression">
+              </v-textarea>
+            </v-col>
 
-          <p class="text-decoration-underline">
-            引用元：{{ linkToCitation }}
-          </p></v-card-text
-        >
+            <v-col cols="12" sm="12" md="12">
+              <v-text-field
+                dense
+                label="比較対象1"
+                outlined
+                v-model="itemLabel1"
+              ></v-text-field>
+              <v-text-field
+                dense
+                label="比較対象2"
+                outlined
+                v-model="itemLabel2"
+              ></v-text-field>
+            </v-col>
 
-        <v-col class="" cols="12">
-          <!-- 印象グラフ -->
-          印象
-          <line-chart
-            class="horizontal-graph"
-            :chart-data="chartData1"
-            :options="options"
-            :height="150"
-          ></line-chart>
-          <!-- 実態グラフ -->
-          実態値
-          <line-chart
-            class="horizontal-graph"
-            :chart-data="chartData2"
-            :options="options2"
-            :height="150"
-          ></line-chart>
-        </v-col>
-      </v-card>
+            <v-col cols="12" sm="12" md="12">
+              <div class="Subtitle 2 text-left">印象</div>
+              <!-- 印象スライダー -->
+              <v-slider
+                v-model="imaginaryValue1"
+                step="10"
+                thumb-label="always"
+                track-color="secondary"
+                ticks
+              >
+                <template v-slot:prepend>
+                  <v-text-field
+                    dense
+                    :label="itemLabel1"
+                    disabled
+                    outlined
+                    type="number"
+                    v-model="imaginaryValue1"
+                  ></v-text-field>
+                </template>
+                <template v-slot:append>
+                  <v-text-field
+                    dense
+                    :label="itemLabel2"
+                    disabled
+                    outlined
+                    type="number"
+                    v-model="imaginaryValue2"
+                  ></v-text-field>
+                </template>
+              </v-slider>
+            </v-col>
+
+            <v-col cols="12" sm="12" md="12">
+              <!-- 実態スライダー -->
+              <div class="Subtitle 2 text-left">実態値</div>
+              <v-slider
+                v-model="actualValue1"
+                thumb-label="always"
+                track-color="secondary"
+                readonly
+                :min="0"
+                :max="actualTotalValue"
+                ticks
+              >
+                <template v-slot:prepend>
+                  <v-text-field
+                    dense
+                    :label="itemLabel1"
+                    outlined
+                    type="number"
+                    v-model="actualValue1"
+                  ></v-text-field>
+                </template>
+                <template v-slot:append>
+                  <v-text-field
+                    dense
+                    :label="itemLabel2"
+                    outlined
+                    type="number"
+                    v-model="actualValue2"
+                  ></v-text-field>
+                </template>
+              </v-slider>
+
+              <v-text-field
+                dense
+                label="エビデンス引用元リンク"
+                outlined
+                v-model="evidenceCitation"
+              >
+              </v-text-field>
+            </v-col>
+          </v-form>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" xs="6" sm="6" md="6" lg="6">
+        <v-card>
+          <v-card-text>
+            "{{ expression }}"
+
+            <p class="">
+              表現の引用元：<a :href="linkToCitation">{{ linkToCitation }}</a>
+            </p>
+          </v-card-text>
+
+          <v-col class="" cols="12">
+            <!-- 印象グラフ -->
+            印象
+            <line-chart
+              class="horizontal-graph"
+              :chart-data="chartData1"
+              :options="options"
+              :height="150"
+            ></line-chart>
+            <!-- 実態グラフ -->
+            実態値
+            <line-chart
+              class="horizontal-graph"
+              :chart-data="chartData2"
+              :options="options2"
+              :height="150"
+            ></line-chart>
+          </v-col>
+          <v-card-text>
+            <p class="">
+              実態値のエビデンス：<a :href="evidenceCitation">{{
+                evidenceCitation
+              }}</a>
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -160,6 +174,7 @@ export default {
     // グラフオプション
     options1: {},
     options2: {},
+    evidenceCitation: "",
     options: {
       responsive: true,
       maintainAspectRatio: false,
@@ -231,7 +246,7 @@ export default {
         datasets: [
           {
             label: this.itemLabel1,
-            backgroundColor: "#baffff",
+            backgroundColor: "#3f51b5",
             data: [this.imaginaryValue1],
             borderWidth: 1,
             datalabels: {
@@ -242,7 +257,7 @@ export default {
           },
           {
             label: this.itemLabel2,
-            backgroundColor: "#4bcbcc",
+            backgroundColor: "#f06292",
             data: [this.imaginaryValue2],
             barThickness: 0.5,
           },
@@ -253,12 +268,12 @@ export default {
         datasets: [
           {
             label: this.itemLabel1,
-            backgroundColor: "#baffff",
+            backgroundColor: "#3f51b5",
             data: [this.actualValue1],
           },
           {
             label: this.itemLabel2,
-            backgroundColor: "#4bcbcc",
+            backgroundColor: "#f06292",
             data: [this.actualValue2],
           },
         ],
