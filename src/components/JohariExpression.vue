@@ -145,6 +145,9 @@
           <v-card-text v-show="evidenceCitation">
             <p class="">実態値のエビデンス：{{ evidenceCitation }}</p>
           </v-card-text>
+          <v-card-actions>
+            <v-btn color="primary" @click="submit()">保存する</v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -315,6 +318,11 @@ export default {
           ],
         },
       };
+    },
+    submit: function () {
+      alert(
+        "ごめんなさい。まだ保存機能を付けてないです。機能完成まではスクショを利用してもらえると助かります。"
+      );
     },
   },
   mounted: function () {
