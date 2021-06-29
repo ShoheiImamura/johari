@@ -7,25 +7,29 @@
             <v-col class="" cols="12">
               <v-text-field
                 dense
-                label="表現引用元リンク"
+                label="引用元リンク"
                 outlined
                 v-model="linkToCitation"
               >
               </v-text-field>
-              <v-textarea label="表現" outlined v-model="expression">
+              <v-textarea
+                label="論破したい記事見出しなど"
+                outlined
+                v-model="expression"
+              >
               </v-textarea>
             </v-col>
 
             <v-col cols="12" sm="12" md="12">
               <v-text-field
                 dense
-                label="比較対象1"
+                label="「誤解」"
                 outlined
                 v-model="itemLabel1"
               ></v-text-field>
               <v-text-field
                 dense
-                label="比較対象2"
+                label="「誤解」の逆"
                 outlined
                 v-model="itemLabel2"
               ></v-text-field>
@@ -67,7 +71,7 @@
 
             <v-col cols="12" sm="12" md="12">
               <!-- 実態スライダー -->
-              <div class="Subtitle 2 text-left">実態値</div>
+              <div class="Subtitle 2 text-left">実態</div>
               <v-slider
                 v-model="actualValue1"
                 thumb-label="always"
@@ -115,13 +119,14 @@
             "{{ expression }}"
 
             <p class="">
-              表現の引用元：<a :href="linkToCitation">{{ linkToCitation }}</a>
+              誤解を生み得る表現の引用元：
+              <a :href="linkToCitation">{{ linkToCitation }}</a>
             </p>
           </v-card-text>
 
           <v-col class="" cols="12">
             <!-- 印象グラフ -->
-            印象
+            上記表現から受ける印象
             <line-chart
               class="horizontal-graph"
               :chart-data="chartData1"
@@ -129,7 +134,7 @@
               :height="150"
             ></line-chart>
             <!-- 実態グラフ -->
-            実態値
+            実態
             <line-chart
               class="horizontal-graph"
               :chart-data="chartData2"
@@ -137,7 +142,7 @@
               :height="150"
             ></line-chart>
           </v-col>
-          <v-card-text>
+          <v-card-text v-show="evidenceCitation">
             <p class="">
               実態値のエビデンス：<a :href="evidenceCitation">{{
                 evidenceCitation
