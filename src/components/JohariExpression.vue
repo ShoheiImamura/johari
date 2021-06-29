@@ -120,7 +120,7 @@
 
             <p class="">
               誤解を生み得る表現の引用元：
-              <a :href="linkToCitation">{{ linkToCitation }}</a>
+              {{ linkToCitation }}
             </p>
           </v-card-text>
 
@@ -143,11 +143,7 @@
             ></line-chart>
           </v-col>
           <v-card-text v-show="evidenceCitation">
-            <p class="">
-              実態値のエビデンス：<a :href="evidenceCitation">{{
-                evidenceCitation
-              }}</a>
-            </p>
+            <p class="">実態値のエビデンス：{{ evidenceCitation }}</p>
           </v-card-text>
         </v-card>
       </v-col>
