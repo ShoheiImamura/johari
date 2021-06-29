@@ -36,10 +36,11 @@
               <!-- 印象スライダー -->
               <v-slider
                 v-model="imaginaryValue1"
-                step="10"
+                step="1"
                 thumb-label="always"
                 track-color="secondary"
                 ticks
+                :max="10"
               >
                 <template v-slot:prepend>
                   <v-text-field
@@ -164,7 +165,7 @@ export default {
     itemLabel1: "",
     itemLabel2: "",
 
-    imaginaryValue1: 50,
+    imaginaryValue1: 5,
     actualValue1: 50,
     actualValue2: 50,
     actualTotalValue: 100,
@@ -210,7 +211,7 @@ export default {
   }),
   computed: {
     imaginaryValue2() {
-      return 100 - this.imaginaryValue1;
+      return 10 - this.imaginaryValue1;
     },
   },
   watch: {
